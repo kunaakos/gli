@@ -46,7 +46,7 @@ test('looks the way it should with complete data', async () => {
 			<GlobalStyles />
 			<CurrencyCard baseCurrency="EUR" exchangeRates={completeData} />
 		</>
-  )
+	)
 	const screenshot = await generateImage(GENERATE_IMAGE_OPTIONS)
 	expect(screenshot).toMatchImageSnapshot()
 })
@@ -65,7 +65,7 @@ test('looks the way it should with incomplete data', async () => {
 	render(
 		<>
 			<GlobalStyles />
-      <CurrencyCard baseCurrency="EUR" exchangeRates={incompleteData} />
+			<CurrencyCard baseCurrency="EUR" exchangeRates={incompleteData} />
 		</>
 	)
 	const screenshot = await generateImage(GENERATE_IMAGE_OPTIONS)

@@ -1,5 +1,5 @@
 import { getFx } from '../api/fx'
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 
 import { ExchangeRates } from '../types'
 

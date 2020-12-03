@@ -1,46 +1,31 @@
-# Getting Started with Create React App
+# Exchange Rates App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Goals
 
-## Available Scripts
+I was shooting for finishing this in one afternoon or the equivalent of a workday, which includes reading the docs, setting up boilerplates, and coming up with a design.
 
-In the project directory, you can run:
+### Design / UX
 
-### `yarn start`
+I usually just implement and tweak designs, but whenever I have to make something look like anything, I go with a minimalist, brutalist look - because that's what I personally like, and it's also real fast for prototyping.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+UX-wise the app is pretty standard, there's two tiny details that I very much like, but would drive any user (or product person) crazy in a real world situation:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. the border on the left of currency cards acts as a flagpole if there's an icon available :D
+2. search is case-sensitive, *UPPERCASE* will match currency codes (e.g. AUD), *lowercase* will match currency names
 
-### `yarn test`
+... but this isn't the real world, so I went with it!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+I used a not so common but pretty nice approach to handling different screen sizes: try zooming out!
 
-### `yarn build`
+### Tooling
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I went with CRA for scaffolding the application, because it's the default and a very good tool to go to. It had all the tooling I needed and made it easy to set up regression testing.
+I wrote a standard react app in TypeScript. For styling I used emotion, because paired with a component-based approach and a properly executed UI library it makes meaningful visual regression testing possible (components in this app will render exactly as in the test, if the same default fonts are provided).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Testing
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+There's not much functionality to test, so I picked one component, the CurrencyCard. I'm checking how it handles incomplete data, and did some visual regression testing - which I find very useful for front ends of real-world applications, especially when introducing major changes. They also give developers really useful input about *how* components failed.
 
-### `yarn eject`
+### Conventions
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+I threw in a `.prettierrc` for basic indentation and style rules, and went with defaults for the rest. I don't like making formatting decisions, but I love consistency, so I love a good opinionated linter/formatter.

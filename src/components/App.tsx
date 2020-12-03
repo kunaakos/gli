@@ -67,8 +67,8 @@ const filterSearchResults = (queryFragment: string) => (exchangeRates: ExchangeR
 	Boolean(
 		// UPPERCASE matches currency code
 		exchangeRates.currency.includes(queryFragment) ||
-        // lowercase matches currency name
-        (exchangeRates.nameI18N && exchangeRates.nameI18N.toLowerCase().includes(queryFragment))
+			// lowercase matches currency name
+			(exchangeRates.nameI18N && exchangeRates.nameI18N.toLowerCase().includes(queryFragment))
 	)
 
 export const App = () => {

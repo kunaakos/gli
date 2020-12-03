@@ -36,7 +36,7 @@ export const CurrencyCard = ({ exchangeRates, baseCurrency }: CurrencyCardProps)
 	const { currency, nameI18N, exchangeRate, precision } = exchangeRates
 	return (
 		<CurrencyCardContainer>
-			<CurrencyIcon currency={currency}/>
+			<CurrencyIcon currency={currency} />
 			<CurrencyCardText>
 				<h3 title="currency name">{displayName({ nameI18N, currency })}&nbsp;</h3>
 				{exchangeRate ? (

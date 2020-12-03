@@ -1,6 +1,6 @@
 import FX_API_RESPONSE from './fx.json'
 
-import {InstituteId, ISO8601Date, CurrencyId, ExchangeRates } from '../types'
+import { InstituteId, ISO8601Date, CurrencyId, ExchangeRates } from '../types'
 
 type FxApiResponse = {
 	institute: InstituteId
