@@ -3,11 +3,12 @@ import { render, screen } from '@testing-library/react'
 import { generateImage } from 'jsdom-screenshot'
 import { CurrencyCard } from './CurrencyCard'
 import { ExchangeRates } from '../types'
+import { GlobalStyles } from './GlobalStyles'
 
 const GENERATE_IMAGE_OPTIONS = {
-  serve: ['public'],
-  viewport: { width: 400, height: 100}
-} 
+	serve: ['public'],
+	viewport: { width: 400, height: 64 },
+}
 
 const completeData: ExchangeRates = {
 	currency: 'CAD',
@@ -40,7 +41,12 @@ test('renders a card with all information formatted properly, if data available'
 })
 
 test('looks the way it should with complete data', async () => {
-	render(<CurrencyCard baseCurrency="EUR" exchangeRates={completeData} />)
+	render(
+		<>
+			<GlobalStyles />
+			<CurrencyCard baseCurrency="EUR" exchangeRates={completeData} />
+		</>
+  )
 	const screenshot = await generateImage(GENERATE_IMAGE_OPTIONS)
 	expect(screenshot).toMatchImageSnapshot()
 })
@@ -56,7 +62,12 @@ test('renders a card with placesholders and fallback values, if data incomplete'
 })
 
 test('looks the way it should with incomplete data', async () => {
-	render(<CurrencyCard baseCurrency="EUR" exchangeRates={incompleteData} />)
+	render(
+		<>
+			<GlobalStyles />
+      <CurrencyCard baseCurrency="EUR" exchangeRates={incompleteData} />
+		</>
+	)
 	const screenshot = await generateImage(GENERATE_IMAGE_OPTIONS)
 	expect(screenshot).toMatchImageSnapshot()
 })
