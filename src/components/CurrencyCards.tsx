@@ -1,6 +1,4 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
-import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
 import { CurrencyId, ExchangeRates } from '../types'

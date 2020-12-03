@@ -4,13 +4,20 @@ import styled from '@emotion/styled'
 import { CurrencyId, ExchangeRates } from '../types'
 
 import { SPACING_UNIT } from '../theme'
+import { CurrencyIcon } from './CurrencyIcons'
+
+const CurrencyCardText = styled.div`
+	margin-left: ${SPACING_UNIT}rem;
+`
 
 const CurrencyCardContainer = styled.div`
-	padding: 0 ${SPACING_UNIT}rem;
+	display: flex;
+	padding: 0 ${SPACING_UNIT}rem 0 0;
 	border-left: ${SPACING_UNIT / 2}rem solid black;
 	h3,
 	p {
 		margin: 0;
+		line-height: ${SPACING_UNIT * 2}rem;
 	}
 `
 
@@ -29,15 +36,17 @@ export const CurrencyCard = ({ exchangeRates, baseCurrency }: CurrencyCardProps)
 	const { currency, nameI18N, exchangeRate, precision } = exchangeRates
 	return (
 		<CurrencyCardContainer>
-			<h3>{displayName({ nameI18N, currency })}&nbsp;</h3>
-			{exchangeRate ? (
-				<p>
-					{' '}
-					1 {currency} = {displayRate({ rate: exchangeRate.middle, precision })} {baseCurrency}
-				</p>
-			) : (
-				<p>exchange rate not available</p>
-			)}
+			<CurrencyIcon currency={currency}/>
+			<CurrencyCardText>
+				<h3>{displayName({ nameI18N, currency })}&nbsp;</h3>
+				{exchangeRate ? (
+					<p>
+						1 {currency} = {displayRate({ rate: exchangeRate.middle, precision })} {baseCurrency}
+					</p>
+				) : (
+					<p>exchange rate not available</p>
+				)}
+			</CurrencyCardText>
 		</CurrencyCardContainer>
 	)
 }
