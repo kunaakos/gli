@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect, useCallback } from 'react'
+import { useCallback } from 'react'
 import styled from '@emotion/styled'
 
 import { ExchangeRates } from '../types'
@@ -8,6 +8,7 @@ import { containerStyles, SPACING_UNIT } from '../theme'
 
 import { CurrencyCards } from '../components/CurrencyCards'
 import { useExchangeRates } from '../hooks/use-exchange-rates'
+import { useQueryState } from '../hooks/use-query-state'
 
 /**
  * Istead of full-blown theming, static constants are used.
@@ -72,9 +73,9 @@ const filterSearchResults = (queryFragment: string) => (exchangeRates: ExchangeR
 	)
 
 export const App = () => {
-	const [queryFragment, setQueryFragment] = useState<string>('')
+	const [{ query: queryFragment }, setQueryParams] = useQueryState<{ query: string }>({ query: '' })
 	const exchangeRates = useExchangeRates()
-	const handleSearchInputChange = useCallback(event => setQueryFragment(event.target.value), [])
+	const handleSearchInputChange = useCallback(event => setQueryParams({ query: event.target.value }), [])
 
 	const visibleExchangeRates = exchangeRates ? exchangeRates.filter(filterSearchResults(queryFragment)) : null
 
