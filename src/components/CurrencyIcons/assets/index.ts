@@ -5,7 +5,7 @@
  * files in the repo that designers can edit with their own tools.
  */
 export const iconURI: { [key: string]: string } = {
-	CAD: '/assets/CAD.svg',
-	GBP: '/assets/GBP.svg',
-	USD: '/assets/USD.svg',
+	CAD: 'assets/CAD.svg',
+	GBP: 'assets/GBP.svg',
+	USD: 'assets/USD.svg',
 }
