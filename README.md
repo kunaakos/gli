@@ -4,6 +4,8 @@
 
 I was shooting for finishing this in one afternoon or the equivalent of a workday, which includes reading the docs, setting up boilerplates, and coming up with a design.
 
+See the app live [here](https://kunaakos.github.io/gli/).
+
 ### Design / UX
 
 I usually just implement and tweak designs, but whenever I have to make something look like anything, I go with a minimalist, brutalist look - because that's what I personally like, and it's also real fast for prototyping.
