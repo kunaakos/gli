@@ -32,8 +32,8 @@ export const SPACING_UNIT = 1 // in rems
  */
 export const containerStyles = css`
     @media ${QUERIES.small} {
-        width: 100%;
-        margin: 0 0 ${SPACING_UNIT}rem 0;
+        width: calc(100% - ${SPACING_UNIT * 2 }rem);
+        margin: 0 ${SPACING_UNIT}rem ${SPACING_UNIT}rem ${SPACING_UNIT}rem;
     }
     @media ${QUERIES.medium} {
         width: 100%;
