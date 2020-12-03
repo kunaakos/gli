@@ -1,14 +1,13 @@
 import React from 'react'
 import { useState, useEffect, useCallback } from 'react'
-import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
 import { ExchangeRates } from '../types'
-import { getFx } from '../api/fx'
 
 import { containerStyles, SPACING_UNIT } from '../theme'
 
 import { CurrencyCards } from '../components/CurrencyCards'
+import { useExchangeRates } from '../hooks/use-exchange-rates'
 
 /**
  * Istead of full-blown theming, static constants are used.
@@ -36,9 +35,9 @@ const SearchContainer = styled.div`
 `
 
 const SearchInput = styled.input`
-    width: 100%;
-    box-sizing: border-box;
-    font-size: ${SPACING_UNIT}rem;
+	width: 100%;
+	box-sizing: border-box;
+	font-size: ${SPACING_UNIT}rem;
 	margin: 0;
 	padding: ${SPACING_UNIT / 2}rem ${SPACING_UNIT}rem 0 ${SPACING_UNIT}rem;
 	background: white;
@@ -64,26 +63,20 @@ const SearchInput = styled.input`
 	}
 `
 
-const filterSearchResults = (queryFragment: string) => (exchangeRates: ExchangeRates): Boolean => Boolean(
-    // UPPERCASE matches currency code
-    (exchangeRates.currency.includes(queryFragment)) ||
-    // lowercase matches currency name
-    (exchangeRates.nameI18N && exchangeRates.nameI18N.toLowerCase().includes(queryFragment))
-)
+const filterSearchResults = (queryFragment: string) => (exchangeRates: ExchangeRates): Boolean =>
+	Boolean(
+		// UPPERCASE matches currency code
+		exchangeRates.currency.includes(queryFragment) ||
+        // lowercase matches currency name
+        (exchangeRates.nameI18N && exchangeRates.nameI18N.toLowerCase().includes(queryFragment))
+	)
 
 export const App = () => {
-    // NOTE: an empty query string signals the default/off state
-    const [queryFragment, setQueryFragment] = useState<string>('')
-	const [exchangeRates, setExchangeRates] = useState<ExchangeRates[] | null>(null)
-	useEffect(() => {
-		getFx().then(apiResponse => setExchangeRates(apiResponse.fx))
-	}, [])
+	const [queryFragment, setQueryFragment] = useState<string>('')
+	const exchangeRates = useExchangeRates()
+	const handleSearchInputChange = useCallback(event => setQueryFragment(event.target.value), [])
 
-    const handleSearchInputChange = useCallback(event => setQueryFragment(event.target.value), [])
-    
-    const visibleExchangeRates = exchangeRates
-        ? exchangeRates.filter(filterSearchResults(queryFragment))
-        : null      
+	const visibleExchangeRates = exchangeRates ? exchangeRates.filter(filterSearchResults(queryFragment)) : null
 
 	return (
 		<>
@@ -96,8 +89,8 @@ export const App = () => {
 			{visibleExchangeRates && visibleExchangeRates.length ? (
 				<CurrencyCards baseCurrency={'EUR'} exchangeRates={visibleExchangeRates} />
 			) : (
-                // NOTE: a different message should be displayed for different states for better UX,
-                // but this is technically correct, and does the job for now :D
+				// NOTE: a different message should be displayed for different states for better UX,
+				// but this is technically correct, and does the job for now :D
 				<ContainerPlaceholder>no matches or data :(</ContainerPlaceholder>
 			)}
 		</>
