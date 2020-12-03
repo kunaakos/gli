@@ -1,26 +1,6 @@
 import FX_API_RESPONSE from './fx.json'
 
-type InstituteId = number
-type ISO8601Date = string
-type CurrencyId = string // could be an enum
-
-type ExchangeRate = {
-	buy: number
-	middle: number
-	sell?: number
-	indicator: number
-	lastModified: ISO8601Date
-}
-
-type ExchangeRates = {
-	currency: CurrencyId
-	precision: number
-	nameI18N?: string
-	exchangeRate?: ExchangeRate
-	banknoteRate?: ExchangeRate
-	flags?: string[]
-	denominations?: number[]
-}
+import {InstituteId, ISO8601Date, CurrencyId, ExchangeRates } from '../types'
 
 type FxApiResponse = {
 	institute: InstituteId
