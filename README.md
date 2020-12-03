@@ -19,6 +19,10 @@ UX-wise the app is pretty standard, there's two tiny details that I very much li
 
 I used a not so common but pretty nice approach to handling different screen sizes: try zooming out!
 
+### Assets
+
+I ended up not using the provided flags, because they had country codes instead of currency codes, and I wanted to go with an inlined SVG solution anyways. Inlining SVGs didn't work out without ejecting the app or digging deeper into the CRA docs and hacks maybe, but I stuck with SVGs because I wanted to be able to resize flag icons however I see fit without seeing pixels. I only added a small handful of flags to the assets, and wouldn't spend much time adding more until I had a script handling SVG optimization and inlining, but that's a significant chunk of work in itself.
+
 ### Tooling
 
 I went with CRA for scaffolding the application, because it's the default and a very good tool to go to. It had all the tooling I needed and made it easy to set up regression testing.
