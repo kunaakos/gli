@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-import { iconSVGs } from './assets'
+import { iconURI } from './assets'
 import { CurrencyId } from '../../types'
 import { SPACING_UNIT } from '../../theme'
 
@@ -21,5 +21,5 @@ type CurrencyIconProps = {
 }
 
 export const CurrencyIcon = ({ currency }: CurrencyIconProps) => (
-	<CurrencyIconContainer>{iconSVGs[currency] && <img src={iconSVGs[currency]} />}</CurrencyIconContainer>
+	<CurrencyIconContainer>{iconURI[currency] && <img src={iconURI[currency]} />}</CurrencyIconContainer>
 )

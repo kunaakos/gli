@@ -38,13 +38,13 @@ export const CurrencyCard = ({ exchangeRates, baseCurrency }: CurrencyCardProps)
 		<CurrencyCardContainer>
 			<CurrencyIcon currency={currency}/>
 			<CurrencyCardText>
-				<h3>{displayName({ nameI18N, currency })}&nbsp;</h3>
+				<h3 title="currency name">{displayName({ nameI18N, currency })}&nbsp;</h3>
 				{exchangeRate ? (
-					<p>
+					<p title="currency exchange rate">
 						1 {currency} = {displayRate({ rate: exchangeRate.middle, precision })} {baseCurrency}
 					</p>
 				) : (
-					<p>exchange rate not available</p>
+					<p title="currency exchange rate">exchange rate not available</p>
 				)}
 			</CurrencyCardText>
 		</CurrencyCardContainer>
